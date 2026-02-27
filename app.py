@@ -4,8 +4,8 @@ import pandas as pd
 import plotly.express as px
 import os
 from dotenv import load_dotenv
-import datetime
 from datetime import datetime
+
 
 load_dotenv()
 API_KEY = os.getenv("API_KEY")
@@ -31,7 +31,6 @@ def weather_background(weather_main=None, is_day=True):
 
     effects = ""
 
-
     # Clouds: show if cloudy or partly cloudy
     if weather_main in ["Clouds", "Clear"]:
         if is_day or weather_main == "Clouds":
@@ -40,8 +39,7 @@ def weather_background(weather_main=None, is_day=True):
             <div class="cloud x2"></div>
             <div class="cloud x3"></div>
             <div class="sun"></div> 
-            """
-            
+            """      
   
     # Stars: only at night
     if not is_day:
@@ -60,7 +58,6 @@ def weather_background(weather_main=None, is_day=True):
         effects += "".join("<div class='snow'></div>" for _ in range(80))
 
     # Inject CSS + HTML
-
     st.markdown(f"""
     <style>
                 
@@ -193,7 +190,6 @@ def weather_background(weather_main=None, is_day=True):
 # Apply default background (blue) first
 weather_background()
 
-
 # ----------------------------
 # App content
 # ----------------------------
@@ -237,7 +233,6 @@ if city.strip():
     # ----------------------------
     # Current weather metrics (side by side)
     # ----------------------------
-
 
     # Convert UNIX timestamp to local time (you can also convert to city's local timezone if needed)
     last_updated = datetime.fromtimestamp(weather["dt"]).strftime("%I:%M %p")
@@ -416,10 +411,6 @@ if city.strip():
             </div>
             <br>
             """, unsafe_allow_html=True)
-    
-    
-
-   
    
 
     col1, col2 = st.columns(2)
